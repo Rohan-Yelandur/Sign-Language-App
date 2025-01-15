@@ -19,8 +19,8 @@ class ModelTrainer:
         # Data augmentation and normalization
         train_datagen = ImageDataGenerator(
             preprocessing_function=preprocess_input,
-            shear_range=0.2,
-            zoom_range=0.2,
+            shear_range = 0.2,
+            zoom_range = 0.2,
             horizontal_flip=True,
             validation_split=0.2
         )
@@ -28,21 +28,21 @@ class ModelTrainer:
         # Training data generator
         train_generator = train_datagen.flow_from_directory(
             self.data_dir,
-            target_size=(self.img_height, self.img_width),
-            batch_size=self.batch_size,
-            class_mode='categorical',  # Return 2D one-hot encoded labels
+            target_size = (self.img_height, self.img_width),
+            batch_size = self.batch_size,
+            class_mode = 'categorical',
             subset='training',
-            shuffle=True
+            shuffle = True
         )
 
         # Validation data generator
         validation_generator = train_datagen.flow_from_directory(
             self.data_dir,
-            target_size=(self.img_height, self.img_width),
-            batch_size=self.batch_size,
-            class_mode='categorical',  # Return 2D one-hot encoded labels
-            subset='validation',
-            shuffle=True
+            target_size = (self.img_height, self.img_width),
+            batch_size = self.batch_size,
+            class_mode = 'categorical',
+            subset = 'validation',
+            shuffle = True
         )
 
         if train_generator.samples == 0 or validation_generator.samples == 0:
@@ -74,12 +74,11 @@ class ModelTrainer:
         # Train the model
         model.fit(
             train_generator,
-            epochs=self.epochs,
-            validation_data=validation_generator,
-            callbacks=[early_stopping]
+            epochs = self.epochs,
+            validation_data = validation_generator,
+            callbacks = [early_stopping]
         )
 
         # Save the model
         model.save(self.model_save_path)
-
         print(f"Model saved to {self.model_save_path}")
