@@ -1,9 +1,9 @@
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras import layers, models, Input
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.preprocessing.image import ImageDataGenerator # type: ignore
+from tensorflow.keras import layers, models # type: ignore
+from tensorflow.keras.optimizers import Adam # type: ignore
+from tensorflow.keras.applications import MobileNetV2 # type: ignore
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input # type: ignore
+from tensorflow.keras.callbacks import EarlyStopping # type: ignore
 import os
 
 class ModelTrainer:
