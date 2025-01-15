@@ -56,7 +56,8 @@ class DataCollector:
                 break
             elif key == ord('s'):
                 self.counter += 1
-                cv2.imwrite(f'{self.folder}/Image_{self.counter}-{time.time()}.png', img_formatted)
+                cv2.imwrite(f'{self.folder}/Image_{time.time()}.png', img_formatted)
+                print(f"Image saved: {self.counter}")
             if cv2.getWindowProperty('Image Raw', cv2.WND_PROP_VISIBLE) < 1:
                 break
 

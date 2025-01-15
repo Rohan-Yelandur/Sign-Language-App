@@ -10,10 +10,10 @@ import numpy as np
 import math
 
 class App:
-    def __init__(self, img_size, offset):
+    def __init__(self, img_size, offset, model_path, labels_path):
         self.video_capture = cv2.VideoCapture(0)
         self.hand_detector = HandDetector(maxHands=1)
-        self.classifier = Classifier('Model/keras_model.h5', 'Model/labels.txt')
+        self.classifier = Classifier(model_path, labels_path)
         self.class_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 
                             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         self.img_size = img_size
@@ -53,11 +53,11 @@ class App:
                 except Exception as e:
                     pass
 
-            cv2.imshow('Image Raw', img_raw)
+            cv2.imshow('Sign Language Detection', img_raw)
             key = cv2.waitKey(1) & 0xFF
             if key == ord('q'):
                 break
-            if cv2.getWindowProperty('Image Raw', cv2.WND_PROP_VISIBLE) < 1:
+            if cv2.getWindowProperty('Sign Language Detection', cv2.WND_PROP_VISIBLE) < 1:
                 break
 
         self.video_capture.release()
