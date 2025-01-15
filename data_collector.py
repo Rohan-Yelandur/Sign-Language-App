@@ -10,12 +10,12 @@ import math
 import time
 
 class DataCollector:
-    def __init__(self, folder, img_size, offset):
+    def __init__(self, data_folder, img_size, offset):
         self.video_capture = cv2.VideoCapture(0)
         self.img_size = img_size
         self.offset = offset
         self.counter = 0
-        self.folder = folder
+        self.data_folder = data_folder
         self.hand_detector = HandDetector(maxHands=1)  # Create HandDetector instance once
 
     def collect_data(self):
@@ -56,7 +56,7 @@ class DataCollector:
                 break
             elif key == ord('s'):
                 self.counter += 1
-                cv2.imwrite(f'{self.folder}/Image_{time.time()}.png', img_formatted)
+                cv2.imwrite(f'{self.data_folder}/Image_{time.time()}.png', img_formatted)
                 print(f"Image saved: {self.counter}")
             if cv2.getWindowProperty('Image Raw', cv2.WND_PROP_VISIBLE) < 1:
                 break

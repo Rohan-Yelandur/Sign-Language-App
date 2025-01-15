@@ -7,11 +7,11 @@ from tensorflow.keras.callbacks import EarlyStopping
 import os
 
 class ModelTrainer:
-    def __init__(self, data_dir, model_save_path, img_height, img_width, batch_size, epochs):
+    def __init__(self, data_dir, model_save_path, img_size, batch_size, epochs):
         self.data_dir = data_dir
         self.model_save_path = model_save_path
-        self.img_height = img_height
-        self.img_width = img_width
+        self.img_height = img_size
+        self.img_width = img_size
         self.batch_size = batch_size
         self.epochs = epochs
 
@@ -68,6 +68,7 @@ class ModelTrainer:
                       metrics=['accuracy'])
 
         # Early stopping callback
+        # Training will stop if the validation loss does not improve for 5 consecutive epochs.
         early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
 
         # Train the model
